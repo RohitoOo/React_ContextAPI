@@ -1,26 +1,31 @@
 import React from 'react'
 import {Consumer} from '../../../context'
-
+import Spinner from '../Spinner'
 const Tracks = () => {
         return(
             <Consumer>
-                { value => {
-                    console.log("Available In Tracks Component")
+       {value => {
+         if(value.tracks.length == 0 || value.tracks == undefined ){
+             console.log('here')
+             return <Spinner/>
+         } else {
 
-                    return <div>
-                    <h1>Tracks</h1>
-
-                    { value.posts.length !== 0  &&  
-                        <ul className="list-group">
-
-                        
-                       {value.posts.map( (post,i) => {
-                           return <li key={i} className="list-group-item">{post.id} -  {post.title} </li>
-                       })}
-                        </ul>
-                    }
-                    </div>
-                }}
+            return (
+              
+   
+             <ul className="list-group">
+                 {value.tracks.map( song => {
+                    return <li className="list-group-item">{song.track.artist_name} </li>
+                 })}
+             
+                
+            </ul>     
+            )
+               
+         
+         }
+          
+       }}
             </Consumer>
         )
 }
