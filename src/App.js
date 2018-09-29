@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from './components/layout/Navbar'
 import Index from './components/layout/Index'
 import {Provider} from './context'
-
+import Lyrics from './components/layout/tracks/Lyrics'
 import {BrowserRouter as Router, Route , Switch} from 'react-router-dom';
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
           <div className="contianer">
             <Switch>
               <Route exact path='/' component={Index}></Route>
-
+              <Route component={Lyrics}></Route>
             </Switch>
           </div>
           </React.Fragment>
