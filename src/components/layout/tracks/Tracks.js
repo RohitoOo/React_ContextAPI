@@ -4,10 +4,22 @@ import {Consumer} from '../../../context'
 const Tracks = () => {
         return(
             <Consumer>
-                {value => {
-                    console.log("Available In Tracks Component",value)
+                { value => {
+                    console.log("Available In Tracks Component")
 
-                    return <h1>Tracks</h1>
+                    return <div>
+                    <h1>Tracks</h1>
+
+                    { value.posts.length !== 0  &&  
+                        <ul className="list-group">
+
+                        
+                       {value.posts.map( (post,i) => {
+                           return <li key={i} className="list-group-item">{post.id} -  {post.title} </li>
+                       })}
+                        </ul>
+                    }
+                    </div>
                 }}
             </Consumer>
         )
