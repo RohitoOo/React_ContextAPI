@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Consumer} from '../../../context'
 import axios from 'axios'
-
+import Moment from 'react-moment';
 
 class Lyrics extends Component {
 
@@ -11,7 +11,8 @@ class Lyrics extends Component {
     }
 
     state = {
-        lyrics : ""
+        lyrics: "",
+        date: ""
     }
     
     componentDidMount(){
@@ -19,16 +20,19 @@ class Lyrics extends Component {
         console.log("id" , this.props.location.pathname)
     axios
             .get(`http://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${id}&apikey=619b7024924823f798b0ffe2e046f466`)
-            .then(res => 
+            
+            .then(res => {
                 this.setState({
-                    lyrics : res.data.message.body.lyrics.lyrics_body
-                })
+                    lyrics : res.data.message.body.lyrics.lyrics_body,
+                    date: res.data.message.body.lyrics.updated_time 
+                })}
             )
+            .catch(err => console.log(err))
 
     }
 
     render(){
-        console.log(this.state.lyrics)
+        console.log(this.state.date)
         return (
             <Consumer>
                 
@@ -48,11 +52,22 @@ class Lyrics extends Component {
                 {if(result.length != 0 ) {
                     return  <div className="col-md-12">
                     <div className="card ">
+                    <ul className="list-group">
                         <li key={result[0].track.track_id}className="list-group-item"> 
-                           <h3>Track : {result[0].track.track_name}</h3>   <h5>Artist : {result[0].track.artist_name} </h5> 
-                           <p> Lyrics : {this.state.lyrics}</p>
+                           <h3>Track : {result[0].track.track_name}</h3>   
                         </li>
+                        <li className="list-group-item">
+                        <h5>Artist : {result[0].track.artist_name} </h5> 
+                        </li>
+                         <li className="list-group-item">
+                        <h5>Updated Date : <Moment format="MM/DD/YYYY">{this.state.date}</Moment> </h5> 
+                        </li>
+                        </ul>
+                        <div className="card-body">
+                        <p> Lyrics : {this.state.lyrics}</p>
+                        </div>
                     </div>
+                   
                 </div>
                 } else {
                     console.log("do nothing")
