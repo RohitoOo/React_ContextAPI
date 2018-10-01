@@ -15,7 +15,7 @@ class Lyrics extends Component {
         date: ""
     }
     
-    componentDidMount(){
+    componentWillMount(){
         const id = this.props.location.pathname
         console.log("id" , this.props.location.pathname)
     axios

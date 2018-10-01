@@ -6,24 +6,27 @@ const Tracks = () => {
         return(
             <Consumer>
        {value => {
+           console.log("CHaNGE!!" , value)
          if(value.tracks.length === 0 || value.tracks === undefined ){
-             console.log('here')
+            
              return <Spinner/>
          } else {
-
-            return (<div>
+            console.log('hereee', value)
+            return ( 
+            <div>
                 <h2 className="text-center">{value.heading}</h2>
+           
+            <div className= "row">
+            
+             {value.tracks.map( (song , i) => {
+            return (<div className="col-md-6">
              <ul className="list-group">
-                 {value.tracks.map( (song , i) => {
-                    return (
-                        <Track key={i} song={song}/>
-                    // <li key={song.track.track_id}className="list-group-item"> 
-                    // {song.track.track_name} - {song.track.artist_name} 
-                    // </li>
-                    )
-                 })}
+            <Track key={i} song={song}/>                 
             </ul>
-            </div>     
+            </div>   )
+            })}
+            </div>  
+            </div>
             )
                
          
