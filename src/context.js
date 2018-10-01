@@ -18,6 +18,7 @@ export class Provider extends Component {
         heading : "Top 10 Tracks"
     }
 
+
     componentDidMount(){
         axios
         .get(`https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/chart.tracks.get?page=1&page_size=10&country=us&f_has_lyrics=1&apikey=619b7024924823f798b0ffe2e046f466`)
