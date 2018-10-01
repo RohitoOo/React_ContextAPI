@@ -19,9 +19,13 @@ class Search extends Component {
                 type: "SEARCH_TRACKS",
                 payload: res.data.message.body.track_list
             });
-
-            // console.log("UPDATED",res.data.message.body.track_list)
+            this.setState({
+                trackTitle : ''
+            })
         })
+     
+            
+    
         .catch(err => console.log(err))
     }
 
@@ -33,10 +37,7 @@ class Search extends Component {
         e.target.value =  e.target.value.replace(/\W/g , "")
         this.setState({
             [e.target.name] : e.target.value 
-        }),
-      
-        console.log(this.state.trackTitle)
-    }
+        })    }
     render(){
 
         return(<Consumer>
