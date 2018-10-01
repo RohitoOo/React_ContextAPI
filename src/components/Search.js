@@ -34,7 +34,6 @@ class Search extends Component {
     }
 
     onChange = (e) => {
-        e.target.value =  e.target.value.replace(/\W/g , "")
         this.setState({
             [e.target.name] : e.target.value 
         })    }
