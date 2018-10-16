@@ -5,9 +5,15 @@ import Moment from 'react-moment';
 
 class Lyrics extends Component {
 
+    // If the radix parameter is omitted, JavaScript assumes the following:
+
+    // If the string begins with "0x", the radix is 16 (hexadecimal)
+    // If the string begins with "0", the radix is 8 (octal). This feature is deprecated
+    // If the string begins with any other value, the radix is 10 (decimal)
+
     constructor(props){
         super(props)
-        props.location.pathname = parseInt(props.location.pathname.replace('/', ""))
+        props.location.pathname = parseInt(props.location.pathname.replace('/', ""), 10)
     }
 
     state = {
@@ -42,14 +48,14 @@ class Lyrics extends Component {
                 const result = value.tracks.filter( song => {
                     
     
-                 return song.track.track_id == this.props.location.pathname
+                 return song.track.track_id === this.props.location.pathname
                 
     
                 })
             
      
                
-                {if(result.length != 0 ) {
+                if(result.length !== 0 ) {
                     return  <div className="col-md-12">
                     <div className="card ">
                     <ul className="list-group">
@@ -72,13 +78,7 @@ class Lyrics extends Component {
                 } else {
                     console.log("do nothing")
                 }
-            }
-               
-    
-          
-    
-                // console.log("Inside Lyrics Component" , value.track_id, props.location.pathname)
-            }}
+                }}
             </Consumer>
         )
     }
