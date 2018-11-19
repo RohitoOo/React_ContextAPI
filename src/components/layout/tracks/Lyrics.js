@@ -28,7 +28,7 @@ class Lyrics extends react.Component {
     const id = this.props.location.pathname;
     axios
       .get(
-        `http://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${id}&apikey=619b7024924823f798b0ffe2e046f466`
+        `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${id}&apikey=619b7024924823f798b0ffe2e046f466`
       )
 
       .then(res => {

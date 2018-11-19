@@ -9,7 +9,6 @@ class Search extends react.Component {
 
   async findTrack(dispatch, e) {
     e.preventDefault();
-    console.log("EVENT", e);
     axios
       .get(
         `http://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q_track=${
